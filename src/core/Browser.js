@@ -31,8 +31,10 @@
 	    opera3d = 'OTransition' in doc.style,
 	    any3d = !window.L_DISABLE_3D && (ie3d || webkit3d || gecko3d || opera3d) && !phantomjs;
 
-	var touch = !window.L_NO_TOUCH && !phantomjs && (pointer || 'ontouchstart' in window ||
-		(window.DocumentTouch && document instanceof window.DocumentTouch));
+		var touch = 'ontouchstart' in window ||
+		window.DocumentTouch && document instanceof window.DocumentTouch ||
+		navigator.maxTouchPoints > 0 ||
+		window.navigator.msMaxTouchPoints > 0;
 
 	L.Browser = {
 		ie: ie,
